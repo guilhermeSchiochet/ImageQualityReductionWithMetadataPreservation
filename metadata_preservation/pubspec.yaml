@@ -11,7 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  exif: ^3.2.1
+  lottie: ^2.6.0
+  image_picker: ^1.0.2
+  dotted_border: ^2.1.0
   cupertino_icons: ^1.0.2
+  flutter_image_compress: ^2.0.4
 
 dev_dependencies:
   flutter_test:
@@ -20,6 +25,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  
+  assets:
+    - assets/json/
