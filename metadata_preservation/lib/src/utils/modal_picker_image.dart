@@ -1,11 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
-import 'dart:typed_data';
+
 
 class ModalPickerImage {
-  static void exibeModal(
-      BuildContext context, void Function(Uint8List?) selectImagem) {
+  static void exibeModal( BuildContext context, void Function(File?) selectImagem) {
     showModalBottomSheet(
       context: context,
       useSafeArea: true,
@@ -83,18 +84,18 @@ class ModalPickerImage {
     );
   }
 
-  static Future<void> selectPickerImage (BuildContext context, void Function(Uint8List?) selectImagem, ImageSource source) async {
+  static Future<void> selectPickerImage (BuildContext context, void Function(File?) selectImagem, ImageSource source) async {
     selectImagem(await _pickImage(source));
     // ignore: use_build_context_synchronously
     Navigator.pop(context);
   }
 
-  static Future<Uint8List?> _pickImage(ImageSource source) async {
+  static Future<File?> _pickImage(ImageSource source) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);
 
     if (pickedFile != null) {
-      return pickedFile.readAsBytes();
+      return File(pickedFile.path);
     }
     return null;
   }
